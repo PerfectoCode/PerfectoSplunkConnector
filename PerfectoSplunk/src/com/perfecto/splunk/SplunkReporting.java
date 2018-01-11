@@ -62,16 +62,16 @@ public class SplunkReporting extends Reporting {
 
 	// merges and the various maps to create the json and finally submit them to
 	// splunk
-	public String commitSplunk(String reportTitle, String testName) throws Exception {
+	public String commitSplunk() throws Exception {
 		this.steps.put("Steps", this.stepCollector);
 		Gson gson = new GsonBuilder().enableComplexMapKeySerialization().disableHtmlEscaping().serializeNulls()
 				.create();
 		gson = new GsonBuilder().enableComplexMapKeySerialization().disableHtmlEscaping().serializeNulls().create();
 
-		HashMap<String, HashMap> methodDetails = new HashMap<String, HashMap>();
-		methodDetails.put(testName, this.steps);
+		/*HashMap<String, HashMap> methodDetails = new HashMap<String, HashMap>();
+		methodDetails.put(testName, this.steps);*/
 
-		this.reporting.put("methods", methodDetails);
+		/*this.reporting.put("methods", methodDetails);*/
 
 		String stepsJson = gson.toJson(this.steps);
 		if (stepsJson.contains("Fail")) {
@@ -80,11 +80,11 @@ public class SplunkReporting extends Reporting {
 			this.reporting.put("performanceStatus", "Pass");
 		}
 
-		if (reportTitle != null) {
+	/*	if (reportTitle != null) {
 			this.reportingResults.put(reportTitle, this.reporting);
 		} else {
 			this.reportingResults.put("PerfectoTest", this.reporting);
-		}
+		}*/
 
 		// converts the maps to a final readable json string
 		String jsonReport = gson.toJson(this.reportingResults);
