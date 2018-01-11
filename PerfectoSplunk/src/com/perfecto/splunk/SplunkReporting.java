@@ -80,11 +80,9 @@ public class SplunkReporting extends Reporting {
 			this.reporting.put("performanceStatus", "Pass");
 		}
 
-	/*	if (reportTitle != null) {
-			this.reportingResults.put(reportTitle, this.reporting);
-		} else {
-			this.reportingResults.put("PerfectoTest", this.reporting);
-		}*/
+
+			this.reportingResults.put("Primary", this.reporting);
+		
 
 		// converts the maps to a final readable json string
 		String jsonReport = gson.toJson(this.reportingResults);
